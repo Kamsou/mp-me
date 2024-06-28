@@ -1,0 +1,2 @@
+import{e as m,a as s,d as o}from"../../../runtime.mjs";import{h as a}from"../../../_/blob.mjs";import{r}from"../../../_/auth.mjs";import"../../../virtual/_commonjsHelpers.mjs";import"../../../_/index.mjs";const t=m((async m=>{await r(m),s("blob");const t=o(m);return a().handleUpload(m,{formKey:"files",...t,multiple:"false"!==t.multiple})}));export{t as default};
+//# sourceMappingURL=index.post.mjs.map
