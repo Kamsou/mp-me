@@ -19,7 +19,7 @@ async function sendMessage() {
 <template>
   <div class="message-container">
     <h3>Messages</h3>
-    <form @submit.prevent="sendMessage" class="message-form">
+    <form class="message-form" @submit.prevent="sendMessage">
       <input v-model="newMessage" placeholder="Type a message" class="message-input">
       <button type="submit" class="send-button">Send</button>
     </form>
@@ -36,39 +36,55 @@ async function sendMessage() {
 
 <style scoped>
 .message-container {
-  font-family: Arial, sans-serif;
-  margin: 20px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 20px auto;
   padding: 20px;
-  border: 1px solid #ccc;
+  max-width: 600px;
+  border: 1px solid #e0e0e0;
   border-radius: 10px;
-  background-color: #f9f9f9;
+  background-color: #ffffff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+h3 {
+  margin-bottom: 20px;
+  color: #333;
+  text-align: center;
 }
 
 .message-form {
   display: flex;
   align-items: center;
   margin-bottom: 20px;
+  gap: 10px;
 }
 
 .message-input {
   flex-grow: 1;
   padding: 10px;
-  margin-right: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
+  border: 1px solid #e0e0e0;
+  border-radius: 25px;
+  font-size: 16px;
+  outline: none;
+  transition: border-color 0.3s;
+}
+
+.message-input:focus {
+  border-color: #007bff;
 }
 
 .send-button {
   padding: 10px 20px;
-  background-color: #007bff;
+  background-color: #000000;
   color: white;
   border: none;
-  border-radius: 5px;
+  border-radius: 25px;
   cursor: pointer;
+  transition: background-color 0.3s;
 }
 
 .send-button:hover {
-  background-color: #0056b3;
+  background-color: grey;
 }
 
 .messages-list {
@@ -79,11 +95,17 @@ async function sendMessage() {
 
 .message-item {
   padding: 10px;
-  border-bottom: 1px solid #ccc;
+  margin-bottom: 10px;
+  border-radius: 10px;
+  background-color: #f1f1f1;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  font-size: 14px;
+  color: #333;
 }
 
 .no-messages {
   font-style: italic;
   color: #888;
+  text-align: center;
 }
 </style>
