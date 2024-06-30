@@ -21,12 +21,16 @@ async function sendMessage() {
     <h3>Messages</h3>
     <form class="message-form" @submit.prevent="sendMessage">
       <input v-model="newMessage" placeholder="Type a message" class="message-input">
-      <button type="submit" class="send-button">Send</button>
+      <button type="submit" class="send-button">
+        Publier
+      </button>
     </form>
     <div class="messages-list">
-      <p v-for="message in messages" :key="message.id" class="message-item">
-        {{ message.text }} - {{ message.created_at ? new Date(message.created_at).toLocaleString('fr-FR') : '' }}
-      </p>
+      <transition-group name="message" tag="div">
+        <p v-for="message in messages" :key="message.id" class="message-item">
+          {{ message.text }} - {{ message.created_at ? new Date(message.created_at).toLocaleString('fr-FR') : '' }}
+        </p>
+      </transition-group>
       <p v-if="!messages?.length" class="no-messages">
         No messages yet
       </p>
@@ -80,11 +84,18 @@ h3 {
   border: none;
   border-radius: 25px;
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 5px;
   transition: background-color 0.3s;
 }
 
 .send-button:hover {
   background-color: grey;
+}
+
+.send-icon {
+  font-size: 18px;
 }
 
 .messages-list {
@@ -97,15 +108,36 @@ h3 {
   padding: 10px;
   margin-bottom: 10px;
   border-radius: 10px;
-  background-color: #f1f1f1;
+  background-color: #f9f9f9;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   font-size: 14px;
   color: #333;
+  animation: fadeInUp 0.5s ease-in-out;
 }
 
 .no-messages {
   font-style: italic;
   color: #888;
   text-align: center;
+}
+
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.message-enter-active, .message-leave-active {
+  transition: all 0.5s ease;
+}
+
+.message-enter, .message-leave-to {
+  opacity: 0;
+  transform: translateY(30px);
 }
 </style>
